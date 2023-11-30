@@ -1,5 +1,6 @@
 from setuptools import find_packages, setup
 from typing import List
+from src.logger import logging
 
 HYPEN_E_DOT = "-e ."
 def get_requirements(file_path: str) -> List[str]:
@@ -21,3 +22,4 @@ setup(
     packages=find_packages(),
     install_requires=get_requirements("requirements.txt")
 )
+
