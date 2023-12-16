@@ -8,6 +8,9 @@ import pandas as pd
 
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
 @dataclass
 class DataIngestionCongfig:
     train_data_set: str=os.path.join("artifacts", "train.csv")
@@ -21,8 +24,8 @@ class DataIngest:
     def ingest_data(self):
         logging.info("Entered the data ingestion method or component")
         try:
-            df = pd.read_csv(r"C:\Users\aethe\Desktop\work\MLOPS\notebook\Data\stud.csv")
-            data = pd.DataFrame(df)
+            data = pd.read_csv(r"C:\Users\aethe\Desktop\work\MLOPS\notebook\Data\stud.csv")
+            # data = pd.DataFrame(df)
             logging.info("Read the data as DataFrame")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_set), exist_ok=True)
@@ -45,5 +48,9 @@ class DataIngest:
 
 
 if __name__ == "__main__":
-    ob = DataIngest()
-    ob.ingest_data()
+    obj = DataIngest()
+    train_data, test_data = obj.ingest_data()
+
+    data_trans = DataTransformation()
+    data_trans.initiate_data_transformation(train_data, test_data)
+  
