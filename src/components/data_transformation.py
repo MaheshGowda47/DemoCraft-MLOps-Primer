@@ -97,11 +97,13 @@ class DataTransformation:
                 obj = preprocessing_obj
             )
 
+            logging.info("Model transoforamtion 1")
             return (
                 train_arr,
                 test_arr,
-                self.data_transformation_config.preprocessor_object_file_path
+                # self.data_transformation_config.preprocessor_object_file_path
             )
+            
         except Exception as e:
             raise CustomException(e, sys)
 

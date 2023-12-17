@@ -8,8 +8,11 @@ import pandas as pd
 
 from dataclasses import dataclass
 
-from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
+from src.components.data_transformation import DataTransformation
+
+from src.components.model_train import ModelTrainerConfig
+from src.components.model_train import ModelTrainer
 
 @dataclass
 class DataIngestionCongfig:
@@ -21,7 +24,7 @@ class DataIngest:
     def __init__(self):
         self.ingestion_config = DataIngestionCongfig()
 
-    def ingest_data(self):
+    def initiate_ingest_data(self):
         logging.info("Entered the data ingestion method or component")
         try:
             data = pd.read_csv(r"C:\Users\aethe\Desktop\work\MLOPS\notebook\Data\stud.csv")
@@ -49,8 +52,11 @@ class DataIngest:
 
 if __name__ == "__main__":
     obj = DataIngest()
-    train_data, test_data = obj.ingest_data()
+    train_data, test_data = obj.initiate_ingest_data()
 
+    logging.info("Data Transoformation")
     data_trans = DataTransformation()
-    data_trans.initiate_data_transformation(train_data, test_data)
-  
+    train_arr, test_arr = data_trans.initiate_data_transformation(train_data, test_data)
+
+    ModelTrainer = ModelTrainer()
+    print(ModelTrainer.initiate_model_trainer(train_arr, test_arr))
