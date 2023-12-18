@@ -18,7 +18,7 @@ from sklearn.metrics import r2_score
 
 @dataclass
 class ModelTrainerConfig:
-    trained_model_file_path = os.path.join("artifacts", "model.pkl")
+    trained_model_file_path = os.path.join('artifacts', "model.pkl")
 
 class ModelTrainer:
     def __init__(self):

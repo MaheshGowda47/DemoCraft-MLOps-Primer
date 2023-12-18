@@ -16,7 +16,7 @@ from src.utiles import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_object_file_path = os.path.join("artifacts", "processod.pkl")
+    preprocessor_object_file_path = os.path.join('artifacts', "processod.pkl")
 
 class DataTransformation:
     def __init__(self):
@@ -45,6 +45,7 @@ class DataTransformation:
                 steps=[
                     ("imputer", SimpleImputer(strategy="most_frequent")),
                     ("one_hot_encoding", OneHotEncoder()),
+                    ("scaler",StandardScaler(with_mean=False))
                 ]
             )
             logging.info(f"Categorical column transforming completed : {categorical_columns}")
